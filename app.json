@@ -4,6 +4,7 @@
     "slug": "break-app-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "light",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -11,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -31,6 +34,9 @@
         "projectId": "81440a7a-1bd0-476d-9363-69ccbfbc98ae"
       }
     },
-    "owner": "santizaidan"
+    "owner": "santizaidan",
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
