@@ -26,7 +26,7 @@ const mainStyles = StyleSheet.create({
     fontSize: 14,
   },
   inputText: {
-    width: 300,
+    width: "100%",
     paddingVertical: 10,
     paddingHorizontal: 16,
     marginVertical: 10,
