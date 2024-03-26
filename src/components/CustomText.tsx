@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import { mainStyles } from "../../mainStyles.module";
+import { mainStyles } from "../mainStyles.module";
 
 const CustomText = ({
   children,
