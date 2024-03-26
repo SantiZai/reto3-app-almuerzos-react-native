@@ -4,18 +4,13 @@ import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
 import { mainStyles } from "../../mainStyles.module";
 import CustomButton from "../../components/CustomButton";
-
-interface Employee {
-  fullname: string;
-  identifier: string;
-  position: string;
-}
+import { Employee } from "../../utils/models";
+import { login } from "../../utils/auth";
 
 const LoginPage = () => {
   const [formValues, setFormValues] = useState<Partial<Employee>>({
     fullname: "",
     identifier: "",
-    position: "",
   });
 
   const handleChange = (key: string, text: string) =>
@@ -39,7 +34,7 @@ const LoginPage = () => {
         placeholder="Identificador"
         onChangeText={(text: string) => handleChange("identifier", text)}
       />
-      <CustomButton title="Acceder" large />
+      <CustomButton title="Acceder" onPress={() => login(formValues)} large />
     </CenterView>
   );
 };
