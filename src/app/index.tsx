@@ -1,12 +1,12 @@
-import CenterView from "../components/custom/CenterView";
-import CustomText from "../components/custom/CustomText";
+import CenterView from "../components/CenterView";
+import CustomText from "../components/CustomText";
 
 import { useState, useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
-import CustomButton from "../components/custom/CustomButton";
+import CustomButton from "../components/CustomButton";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
