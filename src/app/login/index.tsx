@@ -19,6 +19,10 @@ const LoginPage = () => {
       [key]: text,
     }));
 
+    const handleLogin = (employee: Partial<Employee>) => {
+      login(employee).then((res) => console.log(res))
+    }
+
   return (
     <CenterView>
       <CustomText>Ingresar</CustomText>
@@ -34,7 +38,7 @@ const LoginPage = () => {
         placeholder="Identificador"
         onChangeText={(text: string) => handleChange("identifier", text)}
       />
-      <CustomButton title="Acceder" onPress={() => login(formValues)} large />
+      <CustomButton title="Acceder" onPress={() => handleLogin(formValues)} large />
     </CenterView>
   );
 };
