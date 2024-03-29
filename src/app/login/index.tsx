@@ -1,11 +1,20 @@
+/* states */
 import { useState } from "react";
+import { UserStore } from "../../utils/stateStore";
+
+/* components */
 import { TextInput } from "react-native";
 import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
-import { mainStyles } from "../../mainStyles.module";
 import CustomButton from "../../components/CustomButton";
-import { Employee } from "../../utils/models";
+
+/* utils */
 import { login } from "../../utils/auth";
+import { Employee } from "../../utils/models";
+import { router } from "expo-router";
+
+/* styles */
+import { mainStyles } from "../../mainStyles.module";
 
 const LoginPage = () => {
   const [formValues, setFormValues] = useState<Partial<Employee>>({
@@ -19,9 +28,17 @@ const LoginPage = () => {
       [key]: text,
     }));
 
-    const handleLogin = (employee: Partial<Employee>) => {
-      login(employee).then((res) => console.log(res))
-    }
+  const handleLogin = (employee: Partial<Employee>) => {
+    login(employee)
+      .then((res) =>
+        UserStore.update((s) => {
+          (s.fullname = res.fullname),
+            (s.identifier = res.identifier),
+            (s.position = res.position);
+        })
+      )
+      .finally(() => router.replace("/orders"));
+  };
 
   return (
     <CenterView>
@@ -38,7 +55,11 @@ const LoginPage = () => {
         placeholder="Identificador"
         onChangeText={(text: string) => handleChange("identifier", text)}
       />
-      <CustomButton title="Acceder" onPress={() => handleLogin(formValues)} large />
+      <CustomButton
+        title="Acceder"
+        onPress={() => handleLogin(formValues)}
+        large
+      />
     </CenterView>
   );
 };
