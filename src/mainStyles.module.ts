@@ -14,6 +14,14 @@ const mainStyles = StyleSheet.create({
     height: "90%",
     margin: "5%",
   },
+  card: {
+    width: "100%",
+    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end"
+  },
   text: {
     fontSize: 16,
     textAlign: "center",
@@ -21,6 +29,9 @@ const mainStyles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 16,
+  },
+  cardTitle: {
+    fontSize: 18,
   },
   paragraph: {
     fontSize: 14,
