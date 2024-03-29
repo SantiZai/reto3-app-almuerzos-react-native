@@ -1,19 +1,15 @@
-/* states */
 import { useState } from "react";
 import { UserStore } from "../../utils/stateStore";
 
-/* components */
 import { TextInput } from "react-native";
 import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
 import CustomButton from "../../components/CustomButton";
 
-/* utils */
 import { login } from "../../utils/auth";
 import { Employee } from "../../utils/models";
 import { router } from "expo-router";
 
-/* styles */
 import { mainStyles } from "../../mainStyles.module";
 
 const LoginPage = () => {
