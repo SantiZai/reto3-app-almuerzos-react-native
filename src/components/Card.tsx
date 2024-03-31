@@ -1,5 +1,7 @@
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import CustomText from "./CustomText";
+import CustomButton from "./CustomButton";
+
 import { mainStyles } from "../mainStyles.module";
 
 const Card = ({
@@ -13,17 +15,8 @@ const Card = ({
 }) => {
   return (
     <View style={mainStyles.card}>
-      {onPress ? (
-        <Pressable onPress={onPress}>
-          <CustomText styles={mainStyles.cardTitle}>{name}</CustomText>
-          <CustomText styles={mainStyles.paragraph}>{type}</CustomText>
-        </Pressable>
-      ) : (
-        <>
-          <CustomText styles={mainStyles.cardTitle}>{name}</CustomText>
-          <CustomText styles={mainStyles.paragraph}>{type}</CustomText>
-        </>
-      )}
+      <CustomText styles={mainStyles.cardTitle}>{name}</CustomText>
+      <CustomButton title="elegir" onPress={onPress} />
     </View>
   );
 };
