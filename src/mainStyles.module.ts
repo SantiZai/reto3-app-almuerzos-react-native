@@ -25,7 +25,7 @@ export const mainStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
+    alignItems: "center",
     backgroundColor: "gray",
   },
   text: {
@@ -34,16 +34,17 @@ export const mainStyles = StyleSheet.create({
     color: true ? "#fffefe" : "#25272b",
   },
   textDark: {
-    color: "#fffefe"
+    color: "#fffefe",
   },
   textLight: {
-    color: "#25272b"
+    color: "#25272b",
   },
   title: {
     fontSize: 24,
     marginBottom: 16,
   },
   cardTitle: {
+    width: "50%",
     fontSize: 18,
   },
   paragraph: {
