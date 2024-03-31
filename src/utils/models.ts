@@ -5,6 +5,7 @@ export interface Employee {
 }
 
 export interface Menu {
+  id: string;
   name: string;
   position: string;
   type: string;
