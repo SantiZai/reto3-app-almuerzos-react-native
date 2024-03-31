@@ -1,5 +1,7 @@
 import { Text } from "react-native";
+
 import { mainStyles } from "../mainStyles.module";
+import { UserStore } from "../utils/stateStore";
 
 const CustomText = ({
   children,
@@ -7,6 +9,11 @@ const CustomText = ({
 }: {
   children: React.ReactNode;
   styles?: {};
-}) => <Text style={{ ...mainStyles.text, ...styles }}>{children}</Text>;
+}) => {
+  const isDarkMode = UserStore.useState((s) => s.isDarkMode);
+
+  const textTheme = isDarkMode ? mainStyles.textDark : mainStyles.textLight;
+  return <Text style={[mainStyles.text, textTheme, styles]}>{children}</Text>;
+};
 
 export default CustomText;
