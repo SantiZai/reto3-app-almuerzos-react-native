@@ -9,7 +9,6 @@ import CustomButton from "../../components/CustomButton";
 import { login } from "../../utils/auth";
 import { Employee } from "../../utils/models";
 import { router } from "expo-router";
-
 import { mainStyles } from "../../mainStyles.module";
 
 const LoginPage = () => {
@@ -28,7 +27,8 @@ const LoginPage = () => {
     login(employee)
       .then((res) =>
         UserStore.update((s) => {
-          (s.fullname = res.fullname),
+          (s.id = res.id),
+            (s.fullname = res.fullname),
             (s.identifier = res.identifier),
             (s.position = res.position);
         })

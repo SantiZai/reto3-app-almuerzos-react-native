@@ -1,6 +1,8 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import { Link } from "expo-router";
 import CustomText from "./CustomText";
+
+import { mainStyles } from "../mainStyles.module";
 
 const CustomButton = ({
   title,
@@ -17,11 +19,11 @@ const CustomButton = ({
     style={
       large
         ? {
-            ...styles.button,
-            ...styles.largeButton,
+            ...mainStyles.button,
+            ...mainStyles.largeButton,
             ...{ display: "flex", justifyContent: "center" },
           }
-        : styles.button
+        : mainStyles.button
     }
     onPress={onPress}
   >
@@ -30,30 +32,12 @@ const CustomButton = ({
         style={{ textAlign: "center" }}
         href={link}
       >
-        <CustomText styles={styles.text}>{title}</CustomText>
+        <CustomText styles={mainStyles.buttonText}>{title}</CustomText>
       </Link>
     ) : (
-      <CustomText styles={styles.text}>{title}</CustomText>
+      <CustomText styles={mainStyles.buttonText}>{title}</CustomText>
     )}
   </Pressable>
 );
-
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: "blue",
-    borderRadius: 10,
-    marginVertical: 10,
-  },
-  largeButton: {
-    width: "100%",
-  },
-  text: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-});
 
 export default CustomButton;
