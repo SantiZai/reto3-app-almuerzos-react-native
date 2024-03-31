@@ -6,11 +6,9 @@ import { mainStyles } from "../mainStyles.module";
 
 const Card = ({
   name,
-  type,
   onPress,
 }: {
   name: string;
-  type: string;
   onPress?: () => void;
 }) => {
   return (
