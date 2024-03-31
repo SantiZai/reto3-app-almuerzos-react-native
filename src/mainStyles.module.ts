@@ -27,6 +27,7 @@ export const mainStyles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "gray",
+    borderRadius: 5,
   },
   text: {
     fontSize: 16,
