@@ -1,10 +1,15 @@
 import { StyleSheet } from "react-native";
 
-const mainStyles = StyleSheet.create({
+export const mainStyles = StyleSheet.create({
   center: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#fff",
+  },
+  darkContainer: {
+    backgroundColor: "#25272b",
+  },
+  lightContainer: {
+    backgroundColor: "#fffefe",
   },
   containerAll: {
     flex: 1,
@@ -20,11 +25,19 @@ const mainStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
+    backgroundColor: "gray",
   },
   text: {
     fontSize: 16,
     textAlign: "center",
+    color: true ? "#fffefe" : "#25272b",
+  },
+  textDark: {
+    color: "#fffefe"
+  },
+  textLight: {
+    color: "#25272b"
   },
   title: {
     fontSize: 24,
@@ -41,9 +54,21 @@ const mainStyles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 16,
     marginVertical: 10,
+    /* TODO: renderizado condicional depende del modo de color */
     backgroundColor: "lightgray",
     borderRadius: 5,
   },
+  button: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    backgroundColor: "blue",
+    borderRadius: 10,
+    marginVertical: 10,
+  },
+  largeButton: {
+    width: "100%",
+  },
+  buttonText: {
+    color: "#fffefe",
+  },
 });
-
-export { mainStyles };
