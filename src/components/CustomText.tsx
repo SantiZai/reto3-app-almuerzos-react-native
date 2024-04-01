@@ -13,6 +13,7 @@ const CustomText = ({
   const isDarkMode = UserStore.useState((s) => s.isDarkMode);
 
   const textTheme = isDarkMode ? mainStyles.textDark : mainStyles.textLight;
+  
   return <Text style={[mainStyles.text, textTheme, styles]}>{children}</Text>;
 };
 
