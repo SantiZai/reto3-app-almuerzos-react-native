@@ -4,11 +4,12 @@ import { UserStore } from "../../utils/stateStore";
 import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
 import { Menu } from "../../utils/models";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import Card from "../../components/Card";
 
 import { getMenus } from "../../utils/menus";
 import CustomButton from "../../components/CustomButton";
+import { mainStyles } from "../../mainStyles.module";
 
 interface Order {
   entradaId: string;
@@ -31,71 +32,73 @@ const MenusPage = () => {
   }, [position]);
 
   return (
-    <CenterView>
-      <CustomText>Creación de menú</CustomText>
-      <View>
-        {menus && (
-          <>
-            <View>
-              <CustomText>Entrada</CustomText>
-              {menus
-                .filter((men) => men.type === "entrada")
-                .map((menu: Menu, index: number) => (
-                  <Card
-                    key={index}
-                    name={menu.name}
-                    onPress={() =>
-                      setOrder((prevState) => ({
-                        ...prevState,
-                        entradaId: menu.id,
-                      }))
-                    }
-                  />
-                ))}
-            </View>
-            <View>
-              <CustomText>Plato principal</CustomText>
-              {menus
-                .filter((men) => men.type === "principal")
-                .map((menu: Menu, index: number) => (
-                  <Card
-                    key={index}
-                    name={menu.name}
-                    onPress={() =>
-                      setOrder((prevState) => ({
-                        ...prevState,
-                        principalId: menu.id,
-                      }))
-                    }
-                  />
-                ))}
-            </View>
-            <View>
-              <CustomText>Postre</CustomText>
-              {menus
-                .filter((men) => men.type === "postre")
-                .map((menu: Menu, index: number) => (
-                  <Card
-                    key={index}
-                    name={menu.name}
-                    onPress={() =>
-                      setOrder((prevState) => ({
-                        ...prevState,
-                        postreId: menu.id,
-                      }))
-                    }
-                  />
-                ))}
-            </View>
-          </>
-        )}
-      </View>
-      <CustomButton
-        title="crear orden"
-        large
-        onPress={() => console.log(order)}
-      />
-    </CenterView>
+    <ScrollView>
+      <CenterView>
+        <CustomText styles={mainStyles.title}>Creación de menú</CustomText>
+        <View>
+          {menus && (
+            <>
+              <View>
+                <CustomText>Entrada</CustomText>
+                {menus
+                  .filter((men) => men.type === "entrada")
+                  .map((menu: Menu, index: number) => (
+                    <Card
+                      key={index}
+                      name={menu.name}
+                      onPress={() =>
+                        setOrder((prevState) => ({
+                          ...prevState,
+                          entradaId: menu.id,
+                        }))
+                      }
+                    />
+                  ))}
+              </View>
+              <View>
+                <CustomText>Plato principal</CustomText>
+                {menus
+                  .filter((men) => men.type === "principal")
+                  .map((menu: Menu, index: number) => (
+                    <Card
+                      key={index}
+                      name={menu.name}
+                      onPress={() =>
+                        setOrder((prevState) => ({
+                          ...prevState,
+                          principalId: menu.id,
+                        }))
+                      }
+                    />
+                  ))}
+              </View>
+              <View>
+                <CustomText>Postre</CustomText>
+                {menus
+                  .filter((men) => men.type === "postre")
+                  .map((menu: Menu, index: number) => (
+                    <Card
+                      key={index}
+                      name={menu.name}
+                      onPress={() =>
+                        setOrder((prevState) => ({
+                          ...prevState,
+                          postreId: menu.id,
+                        }))
+                      }
+                    />
+                  ))}
+              </View>
+            </>
+          )}
+        </View>
+        <CustomButton
+          title="crear orden"
+          large
+          onPress={() => console.log(order)}
+        />
+      </CenterView>
+    </ScrollView>
   );
 };
 
