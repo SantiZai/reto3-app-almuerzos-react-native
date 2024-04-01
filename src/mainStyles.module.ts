@@ -4,6 +4,7 @@ export const mainStyles = StyleSheet.create({
   center: {
     height: "100%",
     width: "100%",
+    paddingTop: 40,
   },
   darkContainer: {
     backgroundColor: "#25272b",
@@ -28,6 +29,7 @@ export const mainStyles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "gray",
     borderRadius: 5,
+    marginVertical: 10,
   },
   text: {
     fontSize: 16,
