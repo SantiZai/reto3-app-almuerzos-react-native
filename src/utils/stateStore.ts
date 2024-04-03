@@ -6,4 +6,5 @@ export const UserStore = new Store({
   identifier: "",
   position: "",
   isDarkMode: true,
+  expoPushToken: {data: "", type: ""},
 });

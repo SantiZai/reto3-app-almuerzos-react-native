@@ -10,24 +10,34 @@ import Card from "../../components/Card";
 import { getMenus } from "../../utils/menus";
 import CustomButton from "../../components/CustomButton";
 import { mainStyles } from "../../mainStyles.module";
-import { createOrder } from "../../utils/orders";
+import { createOrder } from "..";
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>();
   const [order, setOrder] = useState<Order>({
-    entradaId: "",
-    principalId: "",
-    postreId: "",
+    employeeid: "",
+    menus: {
+      entradaId: "",
+      principalId: "",
+      postreId: "",
+    },
   });
 
-  const {id, position, expoPushToken} = UserStore.useState((s) => s);
+  const { id, position, expoPushToken } = UserStore.useState((s) => s);
 
-  const handleCreateOrder = (token: {data: string, type: string}, employeeid: string, order: Order) => {
-    createOrder(token, employeeid, order).then((res) => console.log(res));
+  const handleCreateOrder = (
+    token: { data: string; type: string },
+    order: Order
+  ) => {
+    createOrder(token, order).then((res) => console.log(res));
   };
 
   useEffect(() => {
     getMenus(position).then((res) => setMenus(res));
+    setOrder((prevState) => ({
+      ...prevState,
+      employeeid: id,
+    }));
   }, [position]);
 
   return (
@@ -48,7 +58,10 @@ const MenusPage = () => {
                       onPress={() =>
                         setOrder((prevState) => ({
                           ...prevState,
-                          entradaId: menu.id,
+                          menus: {
+                            ...prevState.menus,
+                            ["entradaId"]: menu.id,
+                          },
                         }))
                       }
                     />
@@ -65,7 +78,10 @@ const MenusPage = () => {
                       onPress={() =>
                         setOrder((prevState) => ({
                           ...prevState,
-                          principalId: menu.id,
+                          menus: {
+                            ...prevState.menus,
+                            ["principalId"]: menu.id,
+                          },
                         }))
                       }
                     />
@@ -82,7 +98,10 @@ const MenusPage = () => {
                       onPress={() =>
                         setOrder((prevState) => ({
                           ...prevState,
-                          postreId: menu.id,
+                          menus: {
+                            ...prevState.menus,
+                            ["postreId"]: menu.id,
+                          },
                         }))
                       }
                     />
@@ -93,7 +112,7 @@ const MenusPage = () => {
         </View>
         <CustomButton
           title="crear orden"
-          onPress={() => handleCreateOrder(expoPushToken, id, order)}
+          onPress={() => handleCreateOrder(expoPushToken, order)}
           large
         />
       </CenterView>

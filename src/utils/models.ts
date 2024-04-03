@@ -10,3 +10,12 @@ export interface Menu {
   position: string;
   type: string;
 }
+
+export interface Order {
+  employeeid: string;
+  menus: {
+    entradaId: string;
+    principalId: string;
+    postreId: string;
+  };
+}
