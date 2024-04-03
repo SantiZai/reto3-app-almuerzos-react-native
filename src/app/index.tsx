@@ -133,9 +133,9 @@ const HomePage = () => {
 
   return (
     <CenterView>
-      <CustomText>Break app</CustomText>
+      <CustomText title>Bienvenido</CustomText>
       <CustomText>
-        Inicie sesión para poder acceder al menú disponible
+        Inicie sesión para poder crear tu menú.
       </CustomText>
       <CustomButton
         title="Ingresar"
