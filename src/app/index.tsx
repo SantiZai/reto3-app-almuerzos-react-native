@@ -7,6 +7,8 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import CustomButton from "../components/CustomButton";
+import { UserStore } from "../utils/stateStore";
+import { Order } from "../utils/models";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -16,19 +18,17 @@ Notifications.setNotificationHandler({
   }),
 });
 
-export const sendNotification = async (order) => {
+export const sendNotification = async (data) => {
   try {
     const notificationContent = {
       title: "Nueva orden creada",
-      body: `Tu orden #${order.id} ha sido creada exitosamente`,
-      data: order,
+      body: `Tu orden #${data.order.id} ha sido creada exitosamente`,
     };
 
     await Notifications.scheduleNotificationAsync({
       content: {
         title: notificationContent.title,
         body: notificationContent.body,
-        data: notificationContent.data,
       },
       trigger: null,
     });
@@ -39,15 +39,7 @@ export const sendNotification = async (order) => {
   }
 };
 
-export async function createOrder(expoPushToken: any) {
-  const newOrder = {
-    employeeid: "9dc613e0-dfa2-4c83-a257-03f6ee8fdc4c",
-    menus: [
-      "a74bd5b0-367e-4347-b1c6-8a75e0165c5f",
-      "715023a3-680b-4e03-8cd1-a3034dd2343a",
-    ],
-  };
-
+export async function createOrder(expoPushToken: any, order: Order) {
   try {
     const response = await fetch(
       "https://o4lzmc38rd.execute-api.sa-east-1.amazonaws.com/orders",
@@ -56,7 +48,7 @@ export async function createOrder(expoPushToken: any) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token: expoPushToken, order: newOrder }),
+        body: JSON.stringify({ token: expoPushToken, order }),
       }
     );
 
@@ -116,9 +108,10 @@ const HomePage = () => {
   const responseListener = useRef<any>();
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token)
-    );
+    registerForPushNotificationsAsync().then((token) => {
+      setExpoPushToken(token);
+      UserStore.update((s) => (s.expoPushToken = token));
+    });
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
