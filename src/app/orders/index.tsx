@@ -3,19 +3,14 @@ import { UserStore } from "../../utils/stateStore";
 
 import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
-import { Menu } from "../../utils/models";
+import { Menu, Order } from "../../utils/models";
 import { ScrollView, View } from "react-native";
 import Card from "../../components/Card";
 
 import { getMenus } from "../../utils/menus";
 import CustomButton from "../../components/CustomButton";
 import { mainStyles } from "../../mainStyles.module";
-
-interface Order {
-  entradaId: string;
-  principalId: string;
-  postreId: string;
-}
+import { createOrder } from "../../utils/orders";
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>();
@@ -25,7 +20,11 @@ const MenusPage = () => {
     postreId: "",
   });
 
-  const position = UserStore.useState((s) => s.position);
+  const {id, position, expoPushToken} = UserStore.useState((s) => s);
+
+  const handleCreateOrder = (token: {data: string, type: string}, employeeid: string, order: Order) => {
+    createOrder(token, employeeid, order).then((res) => console.log(res));
+  };
 
   useEffect(() => {
     getMenus(position).then((res) => setMenus(res));
@@ -94,8 +93,8 @@ const MenusPage = () => {
         </View>
         <CustomButton
           title="crear orden"
+          onPress={() => handleCreateOrder(expoPushToken, id, order)}
           large
-          onPress={() => console.log(order)}
         />
       </CenterView>
     </ScrollView>
