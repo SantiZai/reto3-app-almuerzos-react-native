@@ -7,8 +7,10 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import CustomButton from "../components/CustomButton";
-import { UserStore } from "../utils/stateStore";
+
 import { Order } from "../utils/models";
+
+import { UserStore } from "../utils/stateStore";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
