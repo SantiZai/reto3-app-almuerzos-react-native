@@ -22,6 +22,7 @@ const MenusPage = () => {
       postreId: "",
     },
   });
+  const [times, setTimes] = useState<string[]>([]);
 
   const { id, position, expoPushToken } = UserStore.useState((s) => s);
 
@@ -55,15 +56,24 @@ const MenusPage = () => {
                     <Card
                       key={index}
                       name={menu.name}
-                      onPress={() =>
+                      onPress={() => {
+                        /* setea el correspondiente valor dentro de los menús para la orden */
                         setOrder((prevState) => ({
                           ...prevState,
                           menus: {
                             ...prevState.menus,
                             ["entradaId"]: menu.id,
                           },
-                        }))
-                      }
+                        }));
+
+                        /* agrega a la lista de nombre de los tiempos el menú seleccionado */
+                        setTimes([...times, menu.name]);
+
+                        /* filtra los menús para no mostrar los que coinciden con el tipo ya seleccionado */
+                        setMenus(
+                          menus.filter((menu) => menu.type !== "entrada")
+                        );
+                      }}
                     />
                   ))}
               </View>
@@ -75,15 +85,19 @@ const MenusPage = () => {
                     <Card
                       key={index}
                       name={menu.name}
-                      onPress={() =>
+                      onPress={() => {
                         setOrder((prevState) => ({
                           ...prevState,
                           menus: {
                             ...prevState.menus,
                             ["principalId"]: menu.id,
                           },
-                        }))
-                      }
+                        }));
+                        setTimes([...times, menu.name]);
+                        setMenus(
+                          menus.filter((menu) => menu.type !== "principal")
+                        );
+                      }}
                     />
                   ))}
               </View>
@@ -95,20 +109,29 @@ const MenusPage = () => {
                     <Card
                       key={index}
                       name={menu.name}
-                      onPress={() =>
+                      onPress={() => {
                         setOrder((prevState) => ({
                           ...prevState,
                           menus: {
                             ...prevState.menus,
                             ["postreId"]: menu.id,
                           },
-                        }))
-                      }
+                        }));
+                        setTimes([...times, menu.name]);
+                        setMenus(
+                          menus.filter((menu) => menu.type !== "postre")
+                        );
+                      }}
                     />
                   ))}
               </View>
             </>
           )}
+        </View>
+        <View>
+          {times.map((time: string) => (
+            <CustomText>{time}</CustomText>
+          ))}
         </View>
         <CustomButton
           title="crear orden"
