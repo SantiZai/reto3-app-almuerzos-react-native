@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserStore } from "../../utils/stateStore";
+import { router } from "expo-router";
 
 import CenterView from "../../components/CenterView";
 import CustomText from "../../components/CustomText";
@@ -46,7 +47,7 @@ const MenusPage = () => {
       <CenterView>
         <CustomText styles={mainStyles.title}>Creación de menú</CustomText>
         <View>
-          {menus && (
+          {menus && menus.length > 0 ? (
             <>
               <View>
                 <CustomText>Entrada</CustomText>
@@ -126,16 +127,21 @@ const MenusPage = () => {
                   ))}
               </View>
             </>
+          ) : (
+            <CustomText title>Confirma tu órden!</CustomText>
           )}
         </View>
         <View>
-          {times.map((time: string) => (
-            <CustomText>{time}</CustomText>
+          {times.map((time: string, index: number) => (
+            <CustomText key={index}>{time}</CustomText>
           ))}
         </View>
         <CustomButton
           title="crear orden"
-          onPress={() => handleCreateOrder(expoPushToken, order)}
+          onPress={() => {
+            handleCreateOrder(expoPushToken, order);
+            router.replace("confirm");
+          }}
           large
         />
       </CenterView>
