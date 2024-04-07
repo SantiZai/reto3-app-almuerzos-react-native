@@ -145,7 +145,7 @@ const MenusPage = () => {
           title="crear orden"
           onPress={() => {
             handleCreateOrder(expoPushToken, order);
-            router.push("confirm");
+            router.push("/orders/confirm");
           }}
           large
         />
