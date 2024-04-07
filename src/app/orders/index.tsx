@@ -12,6 +12,7 @@ import { getMenus } from "../../utils/menus";
 import CustomButton from "../../components/CustomButton";
 import { mainStyles } from "../../mainStyles.module";
 import { createOrder } from "..";
+import TypeCard from "../../components/TypeCard";
 
 const MenusPage = () => {
   const [menus, setMenus] = useState<Menu[]>();
@@ -40,6 +41,7 @@ const MenusPage = () => {
       ...prevState,
       employeeid: id,
     }));
+    setTimes([]);
   }, [position]);
 
   return (
@@ -133,14 +135,17 @@ const MenusPage = () => {
         </View>
         <View>
           {times.map((time: string, index: number) => (
-            <CustomText key={index}>{time}</CustomText>
+            <TypeCard
+              key={index}
+              name={time}
+            />
           ))}
         </View>
         <CustomButton
           title="crear orden"
           onPress={() => {
             handleCreateOrder(expoPushToken, order);
-            router.replace("confirm");
+            router.push("confirm");
           }}
           large
         />
