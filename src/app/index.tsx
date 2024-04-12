@@ -9,6 +9,7 @@ import Constants from "expo-constants";
 import CustomButton from "../components/CustomButton";
 
 import { Order } from "../utils/models";
+import envBars from "../../env";
 
 import { UserStore } from "../utils/stateStore";
 
@@ -34,8 +35,6 @@ export const sendNotification = async (data) => {
       },
       trigger: null,
     });
-
-    console.log("Notificación enviada");
   } catch (e) {
     console.error(e);
   }
@@ -43,22 +42,17 @@ export const sendNotification = async (data) => {
 
 export async function createOrder(expoPushToken: any, order: Order) {
   try {
-    const response = await fetch(
-      "https://o4lzmc38rd.execute-api.sa-east-1.amazonaws.com/orders",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token: expoPushToken, order }),
-      }
-    );
+    const response = await fetch(`${envBars.API_BASE}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: expoPushToken, order }),
+    });
 
     const jsonResponse = await response.json();
 
     if (response.ok) {
-      console.log("Orden creada exitosamente");
-
       await sendNotification({ expoPushToken, order: jsonResponse.order });
     } else {
       console.error("Error al crear la orden");
@@ -136,9 +130,7 @@ const HomePage = () => {
   return (
     <CenterView>
       <CustomText title>Bienvenido</CustomText>
-      <CustomText>
-        Inicie sesión para poder crear tu orden.
-      </CustomText>
+      <CustomText>Inicie sesión para poder crear tu orden.</CustomText>
       <CustomButton
         title="Ingresar"
         link="/login"
