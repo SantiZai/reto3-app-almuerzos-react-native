@@ -137,7 +137,7 @@ const HomePage = () => {
     <CenterView>
       <CustomText title>Bienvenido</CustomText>
       <CustomText>
-        Inicie sesión para poder crear tu menú.
+        Inicie sesión para poder crear tu orden.
       </CustomText>
       <CustomButton
         title="Ingresar"
