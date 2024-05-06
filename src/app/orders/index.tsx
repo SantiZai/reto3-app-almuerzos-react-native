@@ -47,12 +47,12 @@ const MenusPage = () => {
   return (
     <ScrollView>
       <CenterView>
-        <CustomText styles={mainStyles.title}>Creación de menú</CustomText>
+        <CustomText styles={{...mainStyles.title, marginBottom: 100}}>Creación de menú</CustomText>
         <View>
           {menus && menus.length > 0 ? (
             <>
-              <View>
-                <CustomText>Entrada</CustomText>
+              <View style={{marginBottom: 50}}>
+                <CustomText title>Entrada</CustomText>
                 {menus
                   .filter((men) => men.type === "entrada")
                   .map((menu: Menu, index: number) => (
@@ -80,8 +80,8 @@ const MenusPage = () => {
                     />
                   ))}
               </View>
-              <View>
-                <CustomText>Plato principal</CustomText>
+              <View style={{marginBottom: 50}}>
+                <CustomText title>Plato principal</CustomText>
                 {menus
                   .filter((men) => men.type === "principal")
                   .map((menu: Menu, index: number) => (
@@ -104,8 +104,8 @@ const MenusPage = () => {
                     />
                   ))}
               </View>
-              <View>
-                <CustomText>Postre</CustomText>
+              <View style={{marginBottom: 50}}>
+                <CustomText title>Postre</CustomText>
                 {menus
                   .filter((men) => men.type === "postre")
                   .map((menu: Menu, index: number) => (
@@ -130,10 +130,10 @@ const MenusPage = () => {
               </View>
             </>
           ) : (
-            <CustomText title>Confirma tu órden!</CustomText>
+            <CustomText title styles={{marginTop: 100}}>Confirma tu órden!</CustomText>
           )}
         </View>
-        <View>
+        <View style={{marginBottom: 100}}>
           {times.map((time: string, index: number) => (
             <TypeCard
               key={index}

@@ -61,7 +61,7 @@ async function createOrder(expoPushToken: any) {
     if (response.ok) {
       console.log("Orden creada exitosamente");
 
-      await sendNotification({expoPushToken, order: jsonResponse.order});
+      await sendNotification({ expoPushToken, order: jsonResponse.order });
     } else {
       console.error("Error al crear la orden");
     }
@@ -137,24 +137,6 @@ export default function App() {
   return (
     <View
       style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-    >
-      {/* <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text>
-          Title: {notification && notification.request.content.title}{" "}
-        </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>
-          Data:{" "}
-          {notification && JSON.stringify(notification.request.content.data)}
-        </Text>
-      </View>
-      <Button
-        title="Press to confirm the order"
-        onPress={async () => {
-          await createOrder(expoPushToken);
-        }}
-      /> */}
-    </View>
+    ></View>
   );
 }
